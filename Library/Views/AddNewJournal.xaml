@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="Library.Views.AddNewJournal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Library.Views"
+             mc:Ignorable="d" 
+             DataContext="{Binding Source={StaticResource Locator}, Path=AddJournal}">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Type" />
+        <Button Content="{Binding BtnContext}" Command="{Binding ChangeTypeCommand}" Grid.Column="1"/>
+        
+        <TextBlock Text="New Title" Grid.Row="1"/>
+        <TextBox Text="{Binding NIB.NewTitle, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"/>
+        
+        <TextBlock Text="Genre" Grid.Row="2"/>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <ComboBox  SelectedIndex="0" ItemsSource="{Binding DLib.GenresList}" SelectedItem="{Binding NIB.NewGenre}"/>
+            <Button Content="Add Genre"  Command="{Binding AddGenreCommand}"/>
+            <Button Content="Remove Genre" Command="{Binding RemoveGenreCommand}"/>
+        </StackPanel>
+        
+        <TextBlock Text="Genres" Grid.Row="3"/>
+        <TextBlock Text="{Binding NIB.Genre}" Grid.Row="3" Grid.Column="1"/>
+
+        <TextBlock Text="Printed Date" Grid.Row="4"/>
+        <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding NIB.NewPrintedDate}"/>
+
+        <TextBlock Text="Publisher" Grid.Row="5"/>
+        <TextBox Text="{Binding NIB.NewPublisher}" Grid.Row="5" Grid.Column="1"/>
+        
+        <TextBlock Text="CopyTax" Grid.Row="6"/>
+        <TextBox Text="{Binding NIB.NewCopyTax}" Grid.Row="6" Grid.Column="1"/>
+
+        <TextBlock Text="Published at" Grid.Row="7"/>
+        <StackPanel Grid.Row="7" Grid.Column="1">
+            <ComboBox  SelectedIndex="0" ItemsSource="{Binding DLib.MonthsList}" SelectedItem="{Binding NIB.SelectedMonth}"/>
+            <Button Content="Add Month"  Command="{Binding AddMonthCommand}"/>
+            <Button Content="Remove Month" Command="{Binding RemoveMonthCommand}"/>
+        </StackPanel>
+
+        <TextBlock Text="Selected Months" Grid.Row="8"/>
+        <TextBlock Text="{Binding NIB.NewMonth}" Grid.Row="8" Grid.Column="1"/>
+
+        <Button Content="Add New" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2" Command="{Binding AddItemCommand}"/>
+    </Grid>
+</UserControl>
